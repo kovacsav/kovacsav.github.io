@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "ih-leaflet-canvaslayer-field": "^1.5.3",
+    "leaflet": "^1.9.3"
+  }
+}
