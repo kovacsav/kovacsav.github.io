@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Stream animation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link rel="stylesheet" href="./node_modules/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="./style/main.css" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
+</head>
+
+<body>
+  <h1 class="title mapTitle">Stream animation</h1>
+  <div id="map"></div>
+
+
+
+  <!-- CDN -->
+  <script src="./js/d3.v4.min.js"></script>
+  <script src="./node_modules/leaflet/dist/leaflet.js"></script>
+  <script src="./node_modules/chroma-js/chroma.min.js"></script>
+
+  <!-- Plugin -->
+  <script src="./js/field.js"></script>
+
+  <script>
+    let map = L.map('map');
+
+    /* Basemap */
+    let url = 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png';
+    L.tileLayer(url, {
+      attribution: 'OSM & Carto',
+      subdomains: 'abcd',
+      maxZoom: 19
+    }).addTo(map);
+
+    /* Default vectorfield animation, from two ASCIIGrid files with u|v current velocity */
+    d3.text('data/u_data20221229_0600+00000.asc', function (u) {
+      d3.text('data/v_data20221229_0600+00000.asc', function (v) {
+
+        let vf = L.VectorField.fromASCIIGrids(u, v);
+        vf.cellYSize = 0.024147;
+        vf.yurCorner = 49.1129;
+        let layer = L.canvasLayer.vectorFieldAnim(vf).addTo(map);
+        map.fitBounds(layer.getBounds());
+
+
+        layer.on('click', function (e) {
+          if (e.value !== null) {
+            let vector = e.value;
+            let v = vector.magnitude().toFixed(2);
+            let d = vector.directionTo().toFixed(0);
+            let html = (`<span class="popupText">${v} m/s to ${d}&deg</span>`);
+            let popup = L.popup()
+              .setLatLng(e.latlng)
+              .setContent(html)
+              .openOn(map);
+          }
+        }); // {onClick: callback} inside 'options' is also supported when using layer contructor
+      });
+    });
+
+    //map.setZoom(12);
+
+  </script>
+</body>
+
+</html>

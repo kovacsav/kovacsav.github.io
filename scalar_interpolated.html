@@ -11,8 +11,10 @@
 </head>
 
 <body>
-  <h1 class="title mapTitle">ScalarField / Interpolation</h1>
+  <h1 class="title mapTitle">Temperature interpolation</h1>
   <div id="map"></div>
+
+
 
   <!-- CDN -->
   <script src="./js/d3.v4.min.js"></script>
@@ -35,11 +37,14 @@
     /* An ASCIIGrid Raster with Surface current velocity */
     d3.text('./data/T_data20221229_0600+00000.asc', function (asc) {
       let s = L.ScalarField.fromASCIIGrid(asc);
+      s.cellYSize = 0.024147;
+      s.yurCorner = 49.1129;
+      let c = chroma.scale('OrRd').domain(s.range);
 
       let identify = function (e) {
         if (e.value !== null) {
-          let v = e.value.toFixed(3);
-          let html = `<span class="popupText">Surface currents velocity ${v} m/s</span>`;
+          let v = e.value.toFixed(1);
+          let html = `<span class="popupText">Surface current temperature ${v} Celsius degree</span>`;
           let popup = L.popup().setLatLng(e.latlng).setContent(html).openOn(map);
         }
       };
@@ -47,26 +52,32 @@
       // Bilinear interpolation
       let interpolated = L.canvasLayer.scalarField(s, {
         interpolate: true,
+        color: c,
       });
       interpolated.on('click', identify);
       interpolated.addTo(map);
+      interpolated.setOpacity(0.8);
 
       // vs original
-      let original = L.canvasLayer.scalarField(s);
+      let original = L.canvasLayer.scalarField(s, {
+        color: c,
+      });
       original.on('click', identify);
       map.fitBounds(interpolated.getBounds());
+      original.setOpacity(0.8);
 
 
       L.control.layers({
         "Interpolated": interpolated,
         "Original": original
       }, {}, {
-          position: 'bottomleft',
-          collapsed: false
-        }).addTo(map);
+        position: 'bottomleft',
+        collapsed: false
+      }).addTo(map);
 
 
     });
+
   </script>
 </body>
 
