@@ -52,7 +52,7 @@
         let s = L.ScalarField.fromASCIIGrid(asc);
         s.cellYSize = 0.024147;
         s.yurCorner = 49.1129;
-        let c = chroma.scale("OrRd").domain(s.range);
+        let c = chroma.scale(["blue", "green", "yellow", "red"]).domain(s.range);
 
         let identify = function (e) {
           if (e.value !== null) {
