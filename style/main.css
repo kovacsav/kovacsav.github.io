@@ -28,6 +28,10 @@ body,
     margin-left: 50px;
 }
 
+.mapTitle--source{
+    top: 40px;
+}
+
 body {
     color: white;
     font-family: 'Roboto', sans-serif;

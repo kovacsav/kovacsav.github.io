@@ -1,0 +1,16 @@
+{
+    "type": "Feature",
+    "properties": {
+        "name": "Hungary border"
+    },
+    "geometry": {
+        "type": "LineString",
+        "coordinates":
+        [
+            [22.87760054, 47.946738],
+            [22.861167, 47.933819],
+            [22.836052, 47.9024518],
+            [22.8197229, 47.892323]
+            ]
+    }
+}
