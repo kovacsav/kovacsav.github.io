@@ -16,7 +16,7 @@ body,
 .title {
     color: white;
     font-family: 'Roboto', sans-serif;
-    font-weight: 100;
+    font-weight: 30;
     background-color: black;
 }
 
@@ -44,7 +44,7 @@ body {
 }
 
 h2 {
-    font-weight: 100;
+    font-weight: 30;
 }
 
 ul a {
