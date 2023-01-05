@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stream animation</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link rel="stylesheet" href="./style/leaflet.css" />
+    <link rel="stylesheet" href="./style/main.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,400"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <p class="title mapTitle">
+      Stream animation width interpolated temperatures
+    </p>
+    <p class="title mapTitle mapTitle--source">
+      WRF data, 2022. 12. 29. 06UTC
+    </p>
+    <div id="map"></div>
+
+    <!-- CDN -->
+    <script src="./js/d3.v4.min.js"></script>
+    <script src="./js/leaflet.js"></script>
+    <script src="./js/chroma.min.js"></script>
+    
+    <!-- DATA -->
+    <script src="./data/hungary.js"></script>
+
+    <!-- Plugin -->
+    <script src="./js/field.js"></script>
+
+    <script src="./js/main.js"></script>
+
+  </body>
+</html>
