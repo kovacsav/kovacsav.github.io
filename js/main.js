@@ -41,12 +41,12 @@ const szegedArrayNumber = calculateArrayNumber(szegedXcoord, szegedYcoord);
 let map = L.map("map");
 
 const temperatureIcon = L.icon({
-  iconUrl: "./assets/temp_backg2.png", // the background image
+  iconUrl: "./temp_backg2.png", // the background image
   iconSize: [60, 40], // size of the icon
 });
 
 const windIcon = L.icon({
-  iconUrl: "./assets/wind_backg4.png", // the background image
+  iconUrl: "./wind_backg4.png", // the background image
   iconSize: [60, 40], // size of the icon
 });
 
