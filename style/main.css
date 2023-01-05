@@ -108,3 +108,12 @@ span.popupText {
     line-height: 20px;
     word-spacing: 0;
 }
+
+.leaflet-tooltip.my-labels {
+    background-color: transparent;
+    border: transparent;
+    box-shadow: none;
+    font-weight: bold;
+    font-size: 15px;
+    translate: 8px;
+    }
