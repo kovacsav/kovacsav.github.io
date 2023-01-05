@@ -63,7 +63,7 @@ let url =
 ("https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png");
 
 L.tileLayer(url, {
-  attribution: "OSM & Carto",
+  //attribution: "OSM & Carto",
   subdomains: "abcd",
   maxZoom: 19,
 }).addTo(map);
@@ -186,11 +186,12 @@ d3.text("data/u_data20221229_0600+00000.asc", function (u) {
   });
 });
 
-L.tileLayer(url, {
+/*L.tileLayer(url, {
   attribution:
     '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attributions">CARTO</a>',
   subdomains: "abcd",
 }).addTo(map);
+*/
 
 /*
     const myGeoJSONPath = "data/test.json";
