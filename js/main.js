@@ -89,7 +89,7 @@ const setWindMarker = (xCoord, yCoord, wind) => {
 };
 
 /* An ASCIIGrid Raster with Surface current velocity */
-d3.text("./data/T_data20221229_0600+00000.asc", function (asc) {
+d3.text("./data/T_data20221229_06.asc", function (asc) {
   let s = L.ScalarField.fromASCIIGrid(asc);
 
   let debrecenTemperature = s.zs[debrecenArrayNumber].toFixed(1);
@@ -147,8 +147,8 @@ d3.text("./data/T_data20221229_0600+00000.asc", function (asc) {
 });
 
 /* Default vectorfield animation, from two ASCIIGrid files with u|v current velocity */
-d3.text("data/u_data20221229_0600+00000.asc", function (u) {
-  d3.text("data/v_data20221229_0600+00000.asc", function (v) {
+d3.text("data/u_data20230110_06.asc", function (u) {
+  d3.text("data/v_data20230110_06.asc", function (v) {
     let vf = L.VectorField.fromASCIIGrids(u, v);
 
     let budapestWind = getWindspeed(
